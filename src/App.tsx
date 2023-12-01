@@ -1,22 +1,29 @@
+import { useParams } from "react-router-dom"
 import Header from "./components/Header"
-import { getProducts } from "./features/products/ProductsSlice"
-import { useAppSelector, useAppDispatch } from './hooks'
-import{useEffect} from 'react'
-
+import { getProducts,getProductDetail } from "./features/products/ProductsSlice"
+import {  useAppDispatch } from './hooks'
+import{useEffect,useCallback} from 'react'
 
 function App() {
-  const{productItems}=useAppSelector((store)=>store.products)
-  console.log(productItems)
+  const {id}= useParams()
   const dispatch=useAppDispatch()
+  const memoizedDispatch = useCallback(dispatch, [dispatch]);
 
   useEffect(()=>{
-    dispatch(getProducts())
-  },[])
+    memoizedDispatch(getProducts())
+  },[memoizedDispatch])
+
+  useEffect(()=>{
+    if (id) {
+      memoizedDispatch(getProductDetail(id));
+    }
+  },[id,memoizedDispatch])
   
 
   return (
     <>
       <Header/>
+      
     </>
   )
 }

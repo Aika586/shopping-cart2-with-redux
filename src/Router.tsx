@@ -3,6 +3,7 @@ import About from "./components/About";
 import Products from "./components/Products";
 import Cart from "./components/Cart";
 import App from "./App";
+import ProductDetail from "./components/ProductDetailt"
 
 
 
@@ -16,6 +17,7 @@ export default function Router(){
       children:[
         {index:true,element:<About/>},
         {path:"products", element:<Products/>},
+        {path:"/products/:id", element:<ProductDetail/>},
         {path:"shoppingCart",element:<Cart/>}
       ]
     }
