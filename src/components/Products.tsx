@@ -16,7 +16,7 @@ export default function Products(){
   
   if(productItems){
    productElements= productItems.map((item)=>(
-    <div className="product-containers" key={item.id}>
+     <div className="product-containers" key={item.id}>
       <Link to={`/products/${item.id}`}>
       <img src={item.images} alt={item.title}/>
       <h3>{item.title}</h3> 
@@ -29,6 +29,10 @@ export default function Products(){
   return(
     <div className="product-container">
     <h1> Clothes</h1>
+    <form>
+      <input type="text" placeholder='search products'/>
+      <button type="submit">Search</button>
+    </form>
     {productElements}
     </div>
 
